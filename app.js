@@ -4,16 +4,19 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoConnect = require("./helper/mongoConnect");
 const appError = require("./helper/errorHandler");
+const userRouter = require("./routes/userRoutes");
+const morgan = require("morgan");
+
+app.use(morgan("dev"));
 app.use(express.json());
 dotenv.config();
 mongoConnect();
 
-//g;obal error handler
+app.use("/api", userRouter);
 
 app.all("*", (req, res, next) => {
   next(
-    new appError(`The requested page ${req.originalUrl} was not found`),
-    404
+    new appError(`The requested page ${req.originalUrl} was not found`, 404)
   );
 });
 
@@ -35,5 +38,9 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); // Use this after the variable declaration
+
+app.listen(process.env.PORT, () => {
+  console.log("listening on port " + process.env.PORT);
+});
 
 module.exports = app;
