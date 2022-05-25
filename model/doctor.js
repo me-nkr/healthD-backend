@@ -12,6 +12,7 @@ const doctorSchema = Schema({
   Image: {
     type: String,
   },
+  doctor: true,
 });
 
 const Doctor = model("doctor", doctorSchema);
