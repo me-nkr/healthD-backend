@@ -7,6 +7,15 @@ exports.createUser = catchAsync(async (req, res, next) => {
   if (!email || !image || !name) {
     return next(new AppError("please provide email,image and name", 404));
   }
+  const oldDataFromDB = await userSchema.findOne({ email: email });
+  if (oldDataFromDB) {
+    res.status(201).json({
+      ok: true,
+      message: "data found in DB",
+      data: oldDataFromDB,
+    });
+  }
+
   const data = await userSchema.create(req.body);
   res.cookie("id", data._id);
   res.status(200).json({

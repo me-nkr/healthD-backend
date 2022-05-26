@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoConnect = require("./helper/mongoConnect");
 const appError = require("./helper/errorHandler");
 const userRouter = require("./routes/userRoutes");
+const doctorRouter = require("./routes/doctorRoutes");
 const morgan = require("morgan");
 
 app.use(morgan("dev"));
@@ -19,7 +20,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Use this after the variable declaration
 
-app.use("/api", userRouter);
+app.use("/api/user", userRouter);
+app.use("/api/med", doctorRouter);
 
 app.all("*", (req, res, next) => {
   next(

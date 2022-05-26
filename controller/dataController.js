@@ -1,7 +1,7 @@
 const dataPat = require("../model/data");
 const catchAsync = require("../helper/catchAsync");
-const AppError = require("../helper/appError");
-const doc = require("../model/doc");
+const AppError = require("../helper/errorHandler");
+const doc = require("../model/doctor");
 const user = require("../model/user");
 
 exports.createData = catchAsync(async (req, res, next) => {
