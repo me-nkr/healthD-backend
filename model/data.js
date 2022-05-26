@@ -11,6 +11,14 @@ const dooctorRemarks = Schema({
       true,
       "document should have a description about patient disease",
     ],
+    data: {
+      type: Date,
+      default: Date.now,
+    },
+    doctor: {
+      type: String,
+      required: [true, "data should have a doctor"],
+    },
   },
 });
 

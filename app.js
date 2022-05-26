@@ -11,6 +11,13 @@ app.use(morgan("dev"));
 app.use(express.json());
 dotenv.config();
 mongoConnect();
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions)); // Use this after the variable declaration
 
 app.use("/api", userRouter);
 
@@ -30,14 +37,6 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
-
-const corsOptions = {
-  origin: "*",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions)); // Use this after the variable declaration
 
 app.listen(process.env.PORT, () => {
   console.log("listening on port " + process.env.PORT);

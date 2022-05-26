@@ -12,6 +12,12 @@ const userSchema = Schema({
   Image: {
     type: String,
   },
+  history: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "data",
+    },
+  ],
 });
 
 const User = model("user", userSchema);

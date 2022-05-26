@@ -1,7 +1,6 @@
 const docControl = require("../controller/doctorController");
-const express = require("express");
-const router = express.Router();
-
+const router = require("./userRoutes");
+const dataR = require("../controller/dataController");
 router.route("/doc").get(docControl.getUserInfo).post(docControl.createUser);
-
-module.exports = router;
+router.route("/doc/data").post(dataR.createData);
+// module.exports = router;
