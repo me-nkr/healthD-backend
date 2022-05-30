@@ -12,7 +12,22 @@ const doctorSchema = Schema({
   Image: {
     type: String,
   },
-  doctor: true,
+  doctor: {
+    type: Boolean,
+    default: true,
+  },
+  patients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
 });
 
 const Doctor = model("doctor", doctorSchema);
