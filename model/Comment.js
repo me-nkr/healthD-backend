@@ -6,6 +6,6 @@ const Com = Schema({
   },
 });
 
-const comment = model("comment", Com);
+const comment = model("Comment", Com);
 
 module.exports = comment;
