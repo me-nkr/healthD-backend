@@ -16,12 +16,18 @@ const doctorSchema = Schema({
     type: Boolean,
     default: true,
   },
-  //   patients: [
-  //     {
-  //       type: Schema.Types.ObjectId,
-  //       ref: "user",
-  //     },
-  //   ],
+  patients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
 });
 
 const Doctor = model("doctor", doctorSchema);
